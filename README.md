@@ -1,2 +1,2 @@
-# star-wars
-App React using api Star Wars
+# Star Wars
+App React using api Star Wars  [SWAPI](https://swapi.co/)
