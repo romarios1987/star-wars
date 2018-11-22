@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import classes from './RandomPlanet.sass'
 import SwapiService from "../../services/SwapiService";
+import Spinner from "../Spinner";
+import PlanetView from "./PlanetView";
 
 
 export default class RandomPlanet extends Component {
@@ -9,7 +11,8 @@ export default class RandomPlanet extends Component {
     swapiService = new SwapiService();
 
     state = {
-        planet: {}
+        planet: {},
+        loading: true
     };
 
 
@@ -20,7 +23,10 @@ export default class RandomPlanet extends Component {
 
 
     onPlanetLoaded = (planet) => {
-        this.setState({planet})
+        this.setState({
+            planet,
+            loading: false
+        })
     };
 
 
@@ -32,29 +38,23 @@ export default class RandomPlanet extends Component {
     }
 
     render() {
-        const {planet: {id, name, population, rotationPeriod, diameter}} = this.state;
+        const {planet, loading} = this.state;
+
+        const spinner = loading ? <Spinner/> : null;
+        const content = !loading ? <PlanetView planet={planet}/> : null;
+
+
         return (
             <div className='row'>
                 <div className="col-12">
                     <div className={classes.RandomPlanet}>
-                        <div className={classes["planet-image"]}>
-                            <img
-                                src={`https://starwars-visualguide.com/assets/img/planets/${id}.jpg`}
-                                alt={name}/>
-                        </div>
-                        <div className={classes["planet-info"]}>
-                            <h2>{name}</h2>
-
-                            <ul>
-                                <li>Population: <span>{population}</span></li>
-                                <li>Rotation: <span>{rotationPeriod}</span></li>
-                                <li>Diameter: <span>{diameter}</span></li>
-                            </ul>
-
-                        </div>
+                        {spinner}
+                        {content}
                     </div>
                 </div>
             </div>
         )
     }
 };
+
+
