@@ -1,32 +1,75 @@
-import React from 'react';
+import React, {Component} from 'react';
 import classes from './PersonDetails.sass'
+import SwapiService from "../../services/SwapiService";
 
-const PersonDetails = () => {
-    return (
+export default class PersonDetails extends Component {
 
+    swapiService = new SwapiService();
+
+    state = {
+        person: null
+    };
+
+    componentDidMount(){
+        this.updatePerson()
+    }
+
+    componentDidUpdate(prevProps){
+        if(this.props.personId !== prevProps.personId){
+            this.updatePerson();
+        }
+    }
+
+    updatePerson() {
+        const {personId} = this.props;
+        if(!personId){
+            return
+        }
+
+        this.swapiService
+            .getPerson(personId)
+            .then((person)=>{
+                this.setState({
+                    person
+                })
+            })
+    }
+
+
+    render() {
+
+        if(!this.state.person){
+            return <span>Select a person from list</span>
+        }
+
+        const {id, name,height,mass, gender, birthYear, eyeColor} = this.state.person;
+
+
+        return (
             <div className="col-sm-12 col-md-6">
                 <div className={classes.PersonDetails}>
                     <div className={classes["planet-image"]}>
-                        <img
-                            src="https://vignette.wikia.nocookie.net/uncyclopedia/images/3/3c/Naboo.png/revision/latest?cb=20081113082340"
-                            alt="NAme Planet"/>
+                        <img style={{width:'175px'}}
+                            src={`https://starwars-visualguide.com/assets/img/characters/${id}.jpg`}
+                            alt={name}/>
                     </div>
                     <div className={classes["planet-info"]}>
-                        <h2>Naboo</h2>
-
+                        <h2>{name}{this.props.personId}</h2>
                         <ul>
-                            <li>PopulationPopulationPopulation</li>
-                            <li>Rotation</li>
-                            <li>Diameter</li>
+                            <li>Height: {height}</li>
+                            <li>Mass: {mass}</li>
+                            <li>Gender: {gender}</li>
+                            <li>Birth Year: {birthYear}</li>
+                            <li>Eye Color: {eyeColor}</li>
                         </ul>
 
                     </div>
                 </div>
             </div>
-
-    )
+        )
+    }
 };
-export default PersonDetails;
+
 
 
 
