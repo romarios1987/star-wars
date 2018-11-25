@@ -8,7 +8,6 @@ import ErrorCheck from "../ErrorCheck";
 
 export default class RandomPlanet extends Component {
 
-
     swapiService = new SwapiService();
 
     state = {
@@ -17,17 +16,13 @@ export default class RandomPlanet extends Component {
         error: false
     };
 
-
-    // constructor() {
-    //     super();
-    //     this.updatePlanet();
-    //     setInterval(this.updatePlanet, 3000)
-    // }
-
-
     componentDidMount() {
         this.updatePlanet();
-        setInterval(this.updatePlanet, 3000)
+        this.interval = setInterval(this.updatePlanet, 5000)
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.interval)
     }
 
 
@@ -63,7 +58,6 @@ export default class RandomPlanet extends Component {
 
         const spinner = loading ? <Spinner/> : null;
         const content = hasData ? <PlanetView planet={planet}/> : null;
-
 
         return (
             <div className='row'>

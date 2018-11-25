@@ -7,28 +7,28 @@ export default class PersonDetails extends Component {
     swapiService = new SwapiService();
 
     state = {
-        person: null
+        person: null,
+        loading: true
     };
 
-    componentDidMount(){
+    componentDidMount() {
         this.updatePerson()
     }
 
-    componentDidUpdate(prevProps){
-        if(this.props.personId !== prevProps.personId){
+    componentDidUpdate(prevProps) {
+        if (this.props.personId !== prevProps.personId) {
             this.updatePerson();
         }
     }
 
     updatePerson() {
         const {personId} = this.props;
-        if(!personId){
+        if (!personId) {
             return
         }
-
         this.swapiService
             .getPerson(personId)
-            .then((person)=>{
+            .then((person) => {
                 this.setState({
                     person
                 })
@@ -36,25 +36,26 @@ export default class PersonDetails extends Component {
     }
 
 
+
+
     render() {
 
-        if(!this.state.person){
+        if (!this.state.person) {
             return <span>Select a person from list</span>
         }
 
-        const {id, name,height,mass, gender, birthYear, eyeColor} = this.state.person;
-
+        const {id, name, height, mass, gender, birthYear, eyeColor} = this.state.person;
 
         return (
             <div className="col-sm-12 col-md-6">
                 <div className={classes.PersonDetails}>
                     <div className={classes["planet-image"]}>
-                        <img style={{width:'175px'}}
-                            src={`https://starwars-visualguide.com/assets/img/characters/${id}.jpg`}
-                            alt={name}/>
+                        <img style={{width: '175px'}}
+                             src={`https://starwars-visualguide.com/assets/img/characters/${id}.jpg`}
+                             alt={name}/>
                     </div>
                     <div className={classes["planet-info"]}>
-                        <h2>{name}{this.props.personId}</h2>
+                        <h2>{name}</h2>
                         <ul>
                             <li>Height: {height}</li>
                             <li>Mass: {mass}</li>

@@ -65,7 +65,7 @@ export default class SwapiService {
             rotationPeriod: planet.rotation_period,
             diameter: planet.diameter
         }
-    }
+    };
 
 
     // data transformation Starship
