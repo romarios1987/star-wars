@@ -4,7 +4,6 @@ import AppHeader from "../AppHeader";
 import RandomPlanet from "../RandomPlanet";
 import PeoplePage from "../PeoplePage";
 
-
 export default class App extends Component {
 
     render() {
@@ -15,7 +14,6 @@ export default class App extends Component {
 
                     <RandomPlanet/>
                     <PeoplePage/>
-
                 </div>
             </div>
         );

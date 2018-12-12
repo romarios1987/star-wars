@@ -20,7 +20,6 @@ const AppHeader = () => {
                                         <a className="nav-link" href="#">Starships</a>
                                     </li>
                                 </ul>
-
                         </nav>
                     </div>
                 </div>
