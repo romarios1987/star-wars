@@ -5,7 +5,6 @@ import Spinner from "../Spinner";
 import PlanetView from "./PlanetView";
 import ErrorCheck from "../ErrorCheck";
 
-
 export default class RandomPlanet extends Component {
 
     swapiService = new SwapiService();
@@ -43,7 +42,7 @@ export default class RandomPlanet extends Component {
 
 
     updatePlanet = () => {
-        const id = Math.floor(Math.random() * 58) + 2;
+        const id = Math.floor(Math.random() * 16) + 3;
         this.swapiService
             .getPlanet(id)
             .then(this.onPlanetLoaded)
@@ -54,9 +53,11 @@ export default class RandomPlanet extends Component {
         const {planet, loading, error} = this.state;
 
         const hasData = !(loading || error);
+
         const errorMessage = error ? <ErrorCheck/> : null;
 
         const spinner = loading ? <Spinner/> : null;
+
         const content = hasData ? <PlanetView planet={planet}/> : null;
 
         return (
@@ -72,5 +73,3 @@ export default class RandomPlanet extends Component {
         )
     }
 };
-
-

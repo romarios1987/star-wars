@@ -4,6 +4,7 @@ import React from "react";
 const PlanetView = ({planet}) => {
 
     const {id, name, population, rotationPeriod, diameter} = planet;
+
     return (
         <>
             <div className={classes["planet-image"]}>
@@ -12,9 +13,10 @@ const PlanetView = ({planet}) => {
                     alt={name}/>
             </div>
             <div className={classes["planet-info"]}>
-                <h2>{name}</h2>
+                <h2>{`${name}`}</h2>
 
                 <ul>
+                    <li>ID: <span>{id}</span></li>
                     <li>Population: <span>{population}</span></li>
                     <li>Rotation: <span>{rotationPeriod}</span></li>
                     <li>Diameter: <span>{diameter}</span></li>
