@@ -11,7 +11,6 @@ export default class App extends Component {
             <div className={classes.App}>
                 <div className="container">
                     <AppHeader/>
-
                     <RandomPlanet/>
                     <PeoplePage/>
                 </div>

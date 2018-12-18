@@ -12,14 +12,11 @@ export default class ItemList extends Component {
     };
 
 
-
     componentDidMount() {
         this.swapiService
             .getAllPeople()
             .then((peopleList) => {
-                this.setState({
-                    peopleList
-                })
+                this.setState({peopleList})
             })
     }
 
@@ -28,8 +25,9 @@ export default class ItemList extends Component {
         return data.map(({id, name}) => {
             return (
                 <div key={id}
-                   onClick={() => this.props.onItemSelected(id)}
-                   className="list-group-item list-group-item-action">{name}</div>
+                     onClick={() => this.props.onItemSelected(id)}
+                     className="list-group-item list-group-item-action">{name}
+                </div>
             )
         })
     }
@@ -45,7 +43,7 @@ export default class ItemList extends Component {
             return <Spinner/>
         }
         return (
-            <div className="col-sm-12 col-md-6">
+            <div className="col-md-12 col-lg-6">
                 <div className={classes.ItemList}>
                     <div className={classes["list-group"] + ' list-group'}>
                         {items}

@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import classes from './PeoplePage.sass'
 import ItemList from "../ItemList";
 import PersonDetails from "../PersonDetails";
 import ErrorCheck from "../ErrorCheck";
@@ -7,7 +6,7 @@ import ErrorCheck from "../ErrorCheck";
 export default class PeoplePage extends Component {
 
     state = {
-        selectedPerson: 3,
+        selectedPerson: 1,
         hasError: false
     };
 
@@ -28,15 +27,13 @@ export default class PeoplePage extends Component {
             return <ErrorCheck/>
         }
         return (
-            <div className={classes.PeoplePage}>
-                <div className={classes.content}>
-                    <div className="row">
-                        <ItemList onItemSelected={this.onPersonSelected}/>
-                        <PersonDetails personId={this.state.selectedPerson}/>
-                    </div>
+            <div className="row">
+                <div className="col-sm-12">
+                    <h3 className="text-center mb-4">People Page</h3>
                 </div>
+                <ItemList onItemSelected={this.onPersonSelected}/>
+                <PersonDetails personId={this.state.selectedPerson}/>
             </div>
-
         )
     }
 };
