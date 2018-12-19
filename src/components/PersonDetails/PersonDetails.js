@@ -9,7 +9,7 @@ export default class PersonDetails extends Component {
     swapiService = new SwapiService();
 
     state = {
-        person: null,
+        person: {},
         loading: true
     };
 
@@ -43,7 +43,13 @@ export default class PersonDetails extends Component {
 
 
     render() {
+
         const {person, loading} = this.state;
+
+
+        if (!this.state.person) {
+            return <span>Select a person from list</span>
+        }
 
         const spinner = loading ? <Spinner/> : null;
         const content = !loading ? <PersonDetailsView person={person}/> : null;
