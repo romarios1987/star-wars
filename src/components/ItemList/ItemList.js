@@ -25,7 +25,7 @@ export default class ItemList extends Component {
 
             const {id} = item;
 
-            const label = this.props.renderItem(item);
+            const label = this.props.children(item);
 
             return (
                 <div key={id}
@@ -47,13 +47,13 @@ export default class ItemList extends Component {
             return <Spinner/>
         }
         return (
-            <div className="col-md-12 col-lg-6">
+
                 <div className={classes.ItemList}>
                     <div className={classes["list-group"] + ' list-group'}>
                         {items}
                     </div>
                 </div>
-            </div>
+
         )
     }
 };
