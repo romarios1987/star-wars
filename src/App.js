@@ -8,7 +8,7 @@ import People from "./components/People";
 import Planets from "./components/Planets";
 import Starships from "./components/Starships";
 import NotFound from "./components/NotFound";
-import RandomPlanet from "./components/RandomPlanet";
+import RandomPlanet from "./components/RandomPlanet/RandomPlanet";
 
 class App extends Component {
   render() {
