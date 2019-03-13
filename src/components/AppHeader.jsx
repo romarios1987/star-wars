@@ -3,9 +3,9 @@ import {Link, NavLink} from "react-router-dom";
 
 const AppHeader = () => {
   return (
-        <div className="bs-component">
 
-          <nav className="navbar navbar-expand-lg navbar-light bg-light">
+
+          <nav className="navbar navbar-expand-lg navbar-light">
             <div className="container">
 
               <Link className="navbar-brand" to="/">Star Wars</Link>
@@ -26,7 +26,6 @@ const AppHeader = () => {
             </div>
           </nav>
 
-        </div>
   )
 };
 export default AppHeader;

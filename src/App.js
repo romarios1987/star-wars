@@ -8,13 +8,15 @@ import People from "./components/People";
 import Planets from "./components/Planets";
 import Starships from "./components/Starships";
 import NotFound from "./components/NotFound";
+import RandomPlanet from "./components/RandomPlanet";
 
 class App extends Component {
   render() {
     return (
           <>
             <AppHeader/>
-            <main className="container">
+            <RandomPlanet/>
+            <main className="content mt-5">
               <Switch>
 
                 <Route path="/people" component={People}/>
