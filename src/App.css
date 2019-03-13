@@ -54,6 +54,16 @@
     width: 100%;
 }
 
+
+.short-details-info h2{
+    font-size: 25px;
+}
+
+.list-group-item{
+    cursor: pointer;
+}
+
+
 .list-info li {
     position: relative;
     padding: 5px 10px;

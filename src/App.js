@@ -11,6 +11,7 @@ import NotFound from "./components/NotFound";
 import RandomPlanet from "./components/RandomPlanet/RandomPlanet";
 
 class App extends Component {
+
   render() {
     return (
           <>
