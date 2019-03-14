@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import Spinner from "./hoc/withData";
 
 
 const Record = ({item, field, label}) => {
@@ -12,9 +13,8 @@ export {Record}
 
 class ItemDetails extends Component {
 
-  
   state = {
-    item: [],
+    item: null,
     loading: true
   };
 
@@ -26,9 +26,6 @@ class ItemDetails extends Component {
 
   componentDidUpdate(prevProps) {
     if (this.props.itemId !== prevProps.itemId) {
-      this.setState({
-        loading: true
-      });
       this.updateItem();
     }
   }
@@ -36,7 +33,9 @@ class ItemDetails extends Component {
 
   updateItem = () => {
     const {itemId, getData} = this.props;
-    if (!itemId) return;
+    if (!itemId) {
+      return;
+    }
 
     getData(itemId)
           .then((item) => {
@@ -52,45 +51,43 @@ class ItemDetails extends Component {
 
     const {item, loading} = this.state;
 
-    const {} = item;
-    
-    console.log(item);
+    if (!item) {
 
-    // if (!item) {
-    //   return <span>Select a person from a list</span>
-    // }
-    //
-    // const spinner = loading ? <Spinner/> : null;
-    // const content = !loading ? <DetailsItemView item={item}/> : null;
+      return <span>Select a person from a list</span>
+    }
+
+
+    if (loading) {
+      return <Spinner/>;
+    }
+
+    const {id, name} = item;
+
+
+
 
     return (
           <div className="short-details bg-light p-3">
-            {/*{spinner}*/}
-            {/*{content}*/}
+
 
             <div className="d-flex">
               <div className="wrap-img">
-                {/*<img src={`img/characters/${id}.jpg`} className="radius-img" width={180} alt={name}/>*/}
+                <img src={`img/${this.props.imageFolder}/${id}.jpg`} className="radius-img" width={180} alt={name}/>
               </div>
               <div className="short-details-info ml-3">
-                {/*<h2 className="text-uppercase">{name}</h2>*/}
+                <h2 className="text-uppercase">{item.name}</h2>
                 <ul className="list-info">
-                  {React.Children.map(this.props.children, (child, index) => {
-                    return React.cloneElement(child, { item });
-                  })}
-                  {/*<li>Height: {height}</li>*/}
-                  {/*<li>Mass: {mass}</li>*/}
-                  {/*<li>Gender: {gender}</li>*/}
-                  {/*<li>Birth Year: {birthYear}</li>*/}
-                  {/*<li>Eye Color: {eyeColor}</li>*/}
+
+                  {
+                    React.Children.map(this.props.children, (child) => {
+                      return React.cloneElement(child, {item});
+                    })
+                  }
                 </ul>
               </div>
             </div>
 
             <button type="button" className="btn btn-warning mt-3">More Info</button>
-
-
-
 
           </div>
     );
