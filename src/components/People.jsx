@@ -1,9 +1,15 @@
 import React, {Component} from 'react';
 import Row from "./common/Row";
-import ItemList from "./ItemList";
-import DetailsItem from "./DetailsItem/DetailsItem";
+import {PersonList} from "./sw-components/ItemLists";
+import {PersonDetails} from "./sw-components/Details";
+import ItemDetails, {Record} from "./ItemDetails";
+import SwapiService from "./services/SwapiService";
+
 
 class People extends Component {
+
+  swapiService = new SwapiService();
+
 
   state = {
     selectedPerson: 5
@@ -16,11 +22,32 @@ class People extends Component {
 
 
   render() {
+    // const personDetails = (
+    //       <ItemDetails
+    //             itemId={this.state.selectedPerson}
+    //             getData={this.swapiService.getPerson}>
+    //
+    //         <Record field="gender" label="Gender"/>
+    //         <Record field="eyeColor" label="Eye Color"/>
+    //
+    //       </ItemDetails>
+    // );
+
     return (
           <div className="container">
             <Row
-                  left={<ItemList onItemSelected={this.onPersonSelected}/>}
-                  right={<DetailsItem personId={this.state.selectedPerson}/>}
+                  left={
+                    <PersonList
+                          onItemSelected={this.onPersonSelected}
+                        //getData={this.swapiService.getAllPeople}
+                    />}
+
+                  right={
+                    <PersonDetails
+                          itemId={this.state.selectedPerson}
+                          //getData={this.swapiService.getPerson}
+                    />
+                  }
             />
           </div>
     );

@@ -1,64 +1,34 @@
-import React, {Component} from 'react';
-import SwapiService from "./services/SwapiService";
-import Spinner from "./Spinner/Spinner";
+import React from 'react';
 
-class ItemList extends Component {
+const ItemList = (props) => {
 
-  state = {
-    peopleList: []
-  };
+  const {data, onItemSelected} = props;
 
-
-  swapiService = new SwapiService();
-
-  componentDidMount() {
-    this.swapiService.getAllPeople()
-          .then((peopleList) => {
-            this.setState({peopleList})
-          })
-  }
-
-
-  renderItems(peopleList) {
-    return peopleList.map((person) => {
-      return (
-            <li key={person.id}
-                onClick={() => this.props.onItemSelected(person.id)}
-                className="list-group-item list-group-item-action">
-              {person.name}
-            </li>
-      )
-    })
-  }
-
-
-  render() {
-
-    const {peopleList} = this.state;
-//console.log(peopleList);
-    const items = this.renderItems(peopleList);
-
-
-    if (!peopleList) {
-      return <Spinner/>
-    }
-
-
+  const items = data.map(({id, name}) => {
     return (
-          <div className="item-list">
+          <li key={id}
+              onClick={() => onItemSelected(id)}
+              className="list-group-item list-group-item-action">
+            {name}
+          </li>
+    )
+  });
 
-            <div className="form-group">
-              <input type="text" className="form-control" placeholder="Search..."/>
-            </div>
+  return (
+        <div className="item-list">
 
-            <ul className="list-group">
-              {items}
-            </ul>
-
-            <button type="button" className="btn btn-warning mt-3">More items</button>
+          <div className="form-group">
+            <input type="text" className="form-control" placeholder="Search..."/>
           </div>
-    );
-  }
-}
+
+          <ul className="list-group">
+            {items}
+          </ul>
+
+          <button type="button" className="btn btn-warning mt-3">More items</button>
+        </div>
+  );
+
+};
 
 export default ItemList;
