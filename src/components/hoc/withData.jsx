@@ -4,6 +4,7 @@ import ErrorIndicator from "../ErrorIndicator";
 
 
 const withData = (View, getData) => {
+
   return class extends Component {
 
     state = {
@@ -49,9 +50,12 @@ const withData = (View, getData) => {
       if (error) {
         return <ErrorIndicator/>;
       }
+
       return <View {...this.props} data={data}/>
     }
   };
+
+
 };
 
 

@@ -16,15 +16,9 @@ const ItemList = (props) => {
 
   return (
         <div className="item-list">
-
-          <div className="form-group">
-            <input type="text" className="form-control" placeholder="Search..."/>
-          </div>
-
           <ul className="list-group">
             {items}
           </ul>
-
           <button type="button" className="btn btn-warning mt-3">More items</button>
         </div>
   );

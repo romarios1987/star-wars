@@ -1,6 +1,7 @@
 import React from 'react';
 import ItemDetails, {Record} from "../ItemDetails";
 
+
 import {SwapiServiceConsumer} from "../SwapiServiceContext";
 
 const PersonDetails = ({itemId}) => {
@@ -14,7 +15,6 @@ const PersonDetails = ({itemId}) => {
                           getData={getPerson}
                           imageFolder="characters"
                     >
-
                       <Record field="gender" label="Gender"/>
                       <Record field="eyeColor" label="Eye Color"/>
 

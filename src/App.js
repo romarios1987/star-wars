@@ -1,19 +1,26 @@
 import React, {Component} from 'react';
-import {Route, Redirect, Switch} from "react-router-dom";
-
-import './App.css';
 
 
 import AppHeader from "./components/AppHeader";
 
-import PeoplePage from "./components/PeoplePage";
-import Planets from "./components/PlanetsPage";
-import StarshipsPage from "./components/StarshipsPage";
+import './App.css';
+
 
 import NotFound from "./components/NotFound";
 import RandomPlanet from "./components/RandomPlanet/RandomPlanet";
 import {SwapiServiceProvider} from "./components/SwapiServiceContext";
+
+import {Switch, Route, Redirect} from 'react-router-dom';
+
+
+import PeoplePage from './components/pages/PeoplePage';
+import PlanetsPage from './components/pages/PlanetsPage';
+import StarshipsPage from './components/pages/StarshipsPage';
+
 import SwapiService from "./components/services/SwapiService";
+
+
+import {PlanetDetails, StarshipDetails} from "./components/sw-components/Details";
 
 class App extends Component {
 
@@ -28,21 +35,40 @@ class App extends Component {
     return (
 
           <SwapiServiceProvider value={this.state.swapiService}>
+
             <AppHeader/>
+
             {planet}
-            <main className="content mt-5">
+
+            <div className="container content mt-5">
+
               <Switch>
+                <Route path="/"
+                       render={() => <h2>Welcome to StarDB</h2>}
+                       exact/>
+                <Route path="/people/:id?" component={PeoplePage}/>
 
-                <Route path="/people" component={PeoplePage}/>
+                <Route path="/starships" exact component={StarshipsPage}/>
+                <Route path="/starships/:id"
+                       render={({match}) => {
+                         const {id} = match.params;
+                         return <StarshipDetails itemId={id}/>
+                       }}/>
 
-                <Route path="/planets" component={Planets}/>
-                <Route path="/starships" component={StarshipsPage}/>
+                <Route path="/planets" exact component={PlanetsPage}/>
+                <Route path="/planets/:id"
+                       render={({match}) => {
+                         const {id} = match.params;
+                         return <PlanetDetails itemId={id}/>
+                       }}/>
+
                 <Route path="/not-found" component={NotFound}/>
-
-                <Redirect from="/" exact to="/people"/>
                 <Redirect to="/not-found"/>
               </Switch>
-            </main>
+
+
+            </div>
+
           </SwapiServiceProvider>
 
     );

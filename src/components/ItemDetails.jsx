@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import Spinner from "./hoc/withData";
+import Spinner from "./Spinner/Spinner";
 
 
 const Record = ({item, field, label}) => {
@@ -58,21 +58,17 @@ class ItemDetails extends Component {
 
 
     if (loading) {
-      return <Spinner/>;
-    }
+     return <Spinner/>
+  }
 
     const {id, name} = item;
-
-
-
 
     return (
           <div className="short-details bg-light p-3">
 
-
             <div className="d-flex">
               <div className="wrap-img">
-                <img src={`img/${this.props.imageFolder}/${id}.jpg`} className="radius-img" width={180} alt={name}/>
+                <img src={`/img/${this.props.imageFolder}/${id}.jpg`} className="radius-img" width={180} alt={name}/>
               </div>
               <div className="short-details-info ml-3">
                 <h2 className="text-uppercase">{item.name}</h2>
@@ -86,8 +82,6 @@ class ItemDetails extends Component {
                 </ul>
               </div>
             </div>
-
-            <button type="button" className="btn btn-warning mt-3">More Info</button>
 
           </div>
     );

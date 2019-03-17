@@ -9,12 +9,12 @@ const PlanetView = ({planet}) => {
           <div className="col-md-4 col-sm-6 mx-auto text-center">
             <img
                   className="img-fluid radius-img"
-                  src={`img/planets/${id}.jpg`}
+                  src={`/img/planets/${id}.jpg`}
                   width={220}
                   alt={name}
                   onError={(e) => {
                     e.target.onerror = null;
-                    e.target.src = "./img/error-image.png"
+                    e.target.src = "/img/error-image.png"
                   }}
             />
           </div>
