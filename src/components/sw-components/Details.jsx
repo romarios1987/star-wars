@@ -1,5 +1,5 @@
 import React from 'react';
-import ItemDetails, {Record} from "../ItemDetails";
+import ItemDetails, {Record} from "../ItemDetails/ItemDetails";
 
 
 import {SwapiServiceConsumer} from "../SwapiServiceContext";
