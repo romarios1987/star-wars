@@ -1,5 +1,9 @@
 # Star Wars
 App React using api Star Wars  [SWAPI](https://swapi.co/)
 
-#### Deploy on GitHub
-[Preview](https://romarios1987.github.io/star-wars/)
+
+#### Deploy on Surge
+[Preview](http://lumpy-time.surge.sh/)
+
+####  Pull request
+[Review](https://github.com/romarios1987/star-wars/pull/1/files)

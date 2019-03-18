@@ -14,7 +14,7 @@ const PlanetView = ({planet}) => {
                   alt={name}
                   onError={(e) => {
                     e.target.onerror = null;
-                    e.target.src = "/img/error-image.png"
+                    e.target.src = "./img/error-image.png"
                   }}
             />
           </div>
